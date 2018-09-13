@@ -10,7 +10,9 @@ namespace lab3
     {
         private int? day;
         private int year;
-        private int? month;
+        private int month;
+        private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
         
         
         
@@ -30,7 +32,7 @@ namespace lab3
             }
         }
 
-        public int? Month
+        public int Month
         { get => month;
           set
             { 
@@ -50,7 +52,7 @@ namespace lab3
             get => year;
             set
             {
-                if(value.GetType() == typeof(int))
+                if(value is Int32)
                 {
                     year = value;
                 }
