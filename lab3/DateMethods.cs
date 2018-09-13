@@ -10,7 +10,7 @@ namespace lab3
     {
         public void PrintDate()
         {
-            if (Day != null && Month != 0)
+            if (Day != 0 && Month != 0)
             {
                 Console.WriteLine(day.ToString() + ' ' + months.ElementAt(month-1) + ' ' + year.ToString() + " года");
             }
@@ -19,6 +19,8 @@ namespace lab3
                 Console.WriteLine("Дата задана неверно");
             }
         }
+
+      
 
         
     }

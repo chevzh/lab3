@@ -8,16 +8,18 @@ namespace lab3
 {
     public partial class MyDate
     {
-        private int? day;
+        private int day;
         private int year;
         private int month;
+        public readonly int id;
+        public const int someConst = 123;
         private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
             "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
         
         
         
         
-        public  int? Day
+        public  int Day
         { get => day;
           set
             {
@@ -69,6 +71,7 @@ namespace lab3
             Day = day;
             Month = 04;
             Year = 1984;
+            id = year * month / day;
         }
 
         public MyDate(int day, int month, int year) // с параметрами
@@ -76,22 +79,29 @@ namespace lab3
             Day = day;
             Month = month;
             Year = year;
+            id += year * month / day;
         }
 
-        private MyDate(string value) // конструктор без параметров
+        private MyDate(string value) 
         {
-            Console.WriteLine(value);
+            
+            Console.WriteLine("qq " + value);
         }
 
-        public MyDate()
+        public MyDate() // без параметров
         {
-
+            Console.WriteLine("Введите число");
+            Day = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите месяц");
+            Month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите год");
+            Year = Convert.ToInt32(Console.ReadLine());
         }       
 
         static MyDate() // статический конструктор
         {
             Console.WriteLine("Йо собаки");
-            MyDate date = new MyDate("Я Наруто Узумаки");
+            MyDate date = new MyDate("lel");
         }
 
 
