@@ -11,7 +11,6 @@ namespace lab3
         static void Main(string[] args)
         {
             MyDate date1 = new MyDate();
-            
 
             MyDate date2 = new MyDate(1,2,1996);
 

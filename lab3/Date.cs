@@ -54,14 +54,16 @@ namespace lab3
             get => year;
             set
             {
-                if(value is Int32)
-                {
+                try{
                     year = value;
                 }
-                else 
+
+
+                catch (FormatException)
                 {
-                    Console.WriteLine("Год должен быть задан целым числом");
+                    Console.WriteLine("Год введён неверно");
                 }
+               
             }
         }
 
@@ -90,12 +92,9 @@ namespace lab3
 
         public MyDate() // без параметров
         {
-            Console.WriteLine("Введите число");
-            Day = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите месяц");
-            Month = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите год");
-            Year = Convert.ToInt32(Console.ReadLine());
+
+            SetDate();
+           
         }       
 
         static MyDate() // статический конструктор

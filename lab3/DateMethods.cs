@@ -9,19 +9,29 @@ namespace lab3
     public partial class MyDate
     {
         public void PrintDate()
-        {
-            if (Day != 0 && Month != 0)
-            {
-                Console.WriteLine(day.ToString() + ' ' + months.ElementAt(month-1) + ' ' + year.ToString() + " года");
-            }
-            else
-            {
-                Console.WriteLine("Дата задана неверно");
-            }
+        {           
+           Console.WriteLine(day.ToString() + ' ' + months.ElementAt(month-1) + ' ' + year.ToString() + " года");  
         }
 
       
+        private void SetDate()
+        {
+            try
+            {
+                Console.WriteLine("Введите число");
+                Day = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите месяц");
+                Month = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите год");
+                Year = Convert.ToInt32(Console.ReadLine());
+            }
 
+            catch (FormatException)
+            {
+                Console.WriteLine("Проверьте правильность данных и введите их снова");
+                SetDate();
+            }
+        }
         
     }
 }
