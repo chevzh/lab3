@@ -8,13 +8,13 @@ namespace lab3
 {
     public partial class MyDate
     {
-        public void PrintDate()
-        {           
-           Console.WriteLine(day.ToString() + ' ' + months.ElementAt(month-1) + ' ' + year.ToString() + " года");  
-        }
 
-      
-        private void SetDate()
+        private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
+
+        private string GetMonthName(int month) => months.ElementAt(month - 1);
+
+        public void SetDate()
         {
             try
             {
@@ -32,6 +32,54 @@ namespace lab3
                 SetDate();
             }
         }
-        
+
+        public static int GetSum(ref int value, out int constant)
+        {
+            constant = someConst;
+
+            return value + constant;
+        }
+
+        public static void GetClassInfo()
+        {
+            Console.WriteLine("Количество объектов класса : " + objectCounter);
+            
+        }
+
+
+        public void PrintDate()
+        {
+            Console.WriteLine(Day.ToString() + ' ' + GetMonthName(Month) + ' ' + Year.ToString() + " года");
+        }
+
+        public void PrintShortDate()
+        {
+            Console.WriteLine(Day + "/" + Month + "/" + Year);
+        }
+
+        // переопределение методов
+
+        public override int GetHashCode()
+        {
+            int hashcode = day.GetHashCode();
+            hashcode = 31 * hashcode + month.GetHashCode();
+            hashcode = 31 * hashcode + year.GetHashCode();
+
+            return hashcode;
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            MyDate date = obj as MyDate;
+            if (date as MyDate == null)
+                return false;
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+
     }
 }

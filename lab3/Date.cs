@@ -11,13 +11,22 @@ namespace lab3
         private int day;
         private int year;
         private int month;
-        public readonly int id;
-        public const int someConst = 123;
-        private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
-            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
-        
-        
-        
+        private readonly int id;
+        private const int someConst = 123;
+        private static int objectCounter = 0;
+
+
+
+
+
+
+        public int Id
+        {
+            get => id;
+        }
+
+        public  int SomeConst  { get => someConst;}
+
         
         public  int Day
         { get => day;
@@ -74,6 +83,7 @@ namespace lab3
             Month = 04;
             Year = 1984;
             id = year * month / day;
+            objectCounter++;
         }
 
         public MyDate(int day, int month, int year) // с параметрами
@@ -81,20 +91,19 @@ namespace lab3
             Day = day;
             Month = month;
             Year = year;
-            id += year * month / day;
+            id = year * month / day;
+            objectCounter++;
         }
 
         private MyDate(string value) 
-        {
-            
+        {            
             Console.WriteLine("qq " + value);
         }
 
         public MyDate() // без параметров
         {
 
-            SetDate();
-           
+            objectCounter++;
         }       
 
         static MyDate() // статический конструктор
