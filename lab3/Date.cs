@@ -11,13 +11,22 @@ namespace lab3
         private int day;
         private int year;
         private int month;
-        public readonly int id;
-        public const int someConst = 123;
-        private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
-            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
-        
-        
-        
+        private readonly int id;
+        private const int someConst = 123;
+        private static int objectCounter = 0;
+
+
+
+
+
+
+        public int Id
+        {
+            get => id;
+        }
+
+        public  int SomeConst  { get => someConst;}
+
         
         public  int Day
         { get => day;
@@ -54,14 +63,16 @@ namespace lab3
             get => year;
             set
             {
-                if(value is Int32)
-                {
+                try{
                     year = value;
                 }
-                else 
+
+
+                catch (FormatException)
                 {
-                    Console.WriteLine("Год должен быть задан целым числом");
+                    Console.WriteLine("Год введён неверно");
                 }
+               
             }
         }
 
@@ -72,6 +83,7 @@ namespace lab3
             Month = 04;
             Year = 1984;
             id = year * month / day;
+            objectCounter++;
         }
 
         public MyDate(int day, int month, int year) // с параметрами
@@ -79,23 +91,19 @@ namespace lab3
             Day = day;
             Month = month;
             Year = year;
-            id += year * month / day;
+            id = year * month / day;
+            objectCounter++;
         }
 
         private MyDate(string value) 
-        {
-            
+        {            
             Console.WriteLine("qq " + value);
         }
 
         public MyDate() // без параметров
         {
-            Console.WriteLine("Введите число");
-            Day = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите месяц");
-            Month = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите год");
-            Year = Convert.ToInt32(Console.ReadLine());
+
+            objectCounter++;
         }       
 
         static MyDate() // статический конструктор

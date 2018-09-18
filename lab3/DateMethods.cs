@@ -8,20 +8,78 @@ namespace lab3
 {
     public partial class MyDate
     {
-        public void PrintDate()
+
+        private List<String> months = new List<String>() { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
+
+        private string GetMonthName(int month) => months.ElementAt(month - 1);
+
+        public void SetDate()
         {
-            if (Day != 0 && Month != 0)
+            try
             {
-                Console.WriteLine(day.ToString() + ' ' + months.ElementAt(month-1) + ' ' + year.ToString() + " года");
+                Console.WriteLine("Введите число");
+                Day = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите месяц");
+                Month = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите год");
+                Year = Convert.ToInt32(Console.ReadLine());
             }
-            else
+
+            catch (FormatException)
             {
-                Console.WriteLine("Дата задана неверно");
+                Console.WriteLine("Проверьте правильность данных и введите их снова");
+                SetDate();
             }
         }
 
-      
+        public static int GetSum(ref int value, out int constant)
+        {
+            constant = someConst;
 
-        
+            return value + constant;
+        }
+
+        public static void GetClassInfo()
+        {
+            Console.WriteLine("Количество объектов класса : " + objectCounter);
+            
+        }
+
+
+        public void PrintDate()
+        {
+            Console.WriteLine(Day.ToString() + ' ' + GetMonthName(Month) + ' ' + Year.ToString() + " года");
+        }
+
+        public void PrintShortDate()
+        {
+            Console.WriteLine(Day + "/" + Month + "/" + Year);
+        }
+
+        // переопределение методов
+
+        public override int GetHashCode()
+        {
+            int hashcode = day.GetHashCode();
+            hashcode = 31 * hashcode + month.GetHashCode();
+            hashcode = 31 * hashcode + year.GetHashCode();
+
+            return hashcode;
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            MyDate date = obj as MyDate;
+            if (date as MyDate == null)
+                return false;
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+
     }
 }
