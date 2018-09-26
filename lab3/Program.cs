@@ -56,6 +56,8 @@ namespace lab3
                 }
             }
 
+            var anonDate = new { Day = 01, Month = 02, Year = 2077 }; // анонимный тип
+
         }
     }
 }
